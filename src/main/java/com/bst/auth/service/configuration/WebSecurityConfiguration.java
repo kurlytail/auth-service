@@ -57,13 +57,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatcher("/**").authorizeRequests();
 		matchers = matchers.antMatchers("/**/*").permitAll();
 		matchers = matchers.antMatchers("/*").permitAll();
-
-		http.formLogin().successHandler(new AuthenticationSuccessHandler() {
-			@Override
-			public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-					Authentication authentication) throws IOException, ServletException {
-			}
-		});
 		http.csrf().disable();
 	}
 
