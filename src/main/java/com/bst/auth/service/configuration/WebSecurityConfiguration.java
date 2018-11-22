@@ -48,6 +48,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry matchers = http
 				.antMatcher("/**").authorizeRequests();
 		matchers = matchers.antMatchers("/**/*").permitAll();
+		matchers = matchers.antMatchers("/*").permitAll();
 		http.csrf().disable();
 	}
 
