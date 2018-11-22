@@ -2,6 +2,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                       http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<interactiveMode>false</interactiveMode>
     <servers>
         <server>
             <id>bst-scp</id>
@@ -11,11 +12,6 @@
                 <strictHostKeyChecking>no</strictHostKeyChecking>
                 <interactive>false</interactive>
             </configuration>
-        </server>
-        <server>
-            <id>TomcatServer</id>
-            <username>admin</username>
-            <password>password</password>
         </server>
     </servers>
 </settings>
