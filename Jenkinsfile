@@ -33,7 +33,6 @@ pipeline {
      
                 checkout scm
                 withMaven {
-                	sh 'chmod 400 maven.pem'
 		            sh 'mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
 		            sh 'mvn --batch-mode -s settings.xml deploy'
 		            sh 'mvn --batch-mode -s settings.xml dockerfile:build'
