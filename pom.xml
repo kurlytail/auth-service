@@ -29,6 +29,11 @@
 			<version>[0.0.5-SNAPSHOT,)</version>
 		</dependency>
 		<dependency>
+			<groupId>com.bst</groupId>
+			<artifactId>user-authentication</artifactId>
+			<version>[0.0.5-SNAPSHOT,)</version>
+		</dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
