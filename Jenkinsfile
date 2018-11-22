@@ -40,7 +40,7 @@ pipeline {
 		        
 	            sh "docker stop auth-service || true"
 	            sh "docker rm auth-service || true"
-		        sh '''docker run --restart unless-stopped -d -p 10000:80 --dns \$(docker inspect -f \'{{.NetworkSettings.IPAddress}}\' dns) --dns-search brainspeedtech.com --name auth-service --hostname auth-service.brainspeedtech.com brainspeedtech/auth-service:\$MAVEN_VERSION_NUMBER'''
+		        sh '''docker run --restart unless-stopped -d -p 10002:80 --dns \$(docker inspect -f \'{{.NetworkSettings.IPAddress}}\' dns) --dns-search brainspeedtech.com --name auth-service --hostname auth-service.brainspeedtech.com brainspeedtech/auth-service:\$MAVEN_VERSION_NUMBER'''
             }
         }
     }
