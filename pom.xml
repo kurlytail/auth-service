@@ -24,6 +24,10 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.bst</groupId>
 			<artifactId>user-registration</artifactId>
 			<version>[0.0.5-SNAPSHOT,)</version>
