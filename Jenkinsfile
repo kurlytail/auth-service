@@ -39,8 +39,8 @@ pipeline {
                 	pipelineGraphPublisher(disabled: false, lifecycleThreshold: "install")
                 ]) {
 		            sh 'mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
-		            sh 'mvn --batch-mode -s settings.xml clean deploy'
-		            sh 'mvn --batch-mode -s settings.xml dockerfile:build'
+                    sh '/usr/local/bin/mvn -s settings.xml clean deploy --update-snapshots'
+                    sh 'mvn --batch-mode -s settings.xml dockerfile:build'
 		        }
 		        
 	            sh "docker stop auth-service || true"
