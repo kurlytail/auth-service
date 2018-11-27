@@ -32,7 +32,12 @@ pipeline {
                 sh 'rm -rf *'
      
                 checkout scm
-                withMaven {
+                withMaven (options: [
+                	dependenciesFingerprintPublisher(disabled: false),
+                	concordionPublisher(disabled: false),
+                	artifactsPublisher(disabled: true),
+                	pipelineGraphPublisher(disabled: false)
+                ]) {
 		            sh 'mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
 		            sh 'mvn --batch-mode -s settings.xml deploy'
 		            sh 'mvn --batch-mode -s settings.xml dockerfile:build'
