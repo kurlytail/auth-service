@@ -36,10 +36,10 @@ pipeline {
                 	dependenciesFingerprintPublisher(disabled: false),
                 	concordionPublisher(disabled: false),
                 	artifactsPublisher(disabled: true),
-                	pipelineGraphPublisher(disabled: false)
+                	pipelineGraphPublisher(disabled: false, lifecycleThreshold: install)
                 ]) {
 		            sh 'mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
-		            sh 'mvn --batch-mode -s settings.xml deploy'
+		            sh 'mvn --batch-mode -s settings.xml clean deploy'
 		            sh 'mvn --batch-mode -s settings.xml dockerfile:build'
 		        }
 		        
