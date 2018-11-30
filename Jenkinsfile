@@ -7,6 +7,12 @@ pipeline {
         string(defaultValue: "", description: 'Build number offset', name: 'BUILDS_OFFSET')
     }
 
+    triggers {
+        snapshotDependencies()
+        upstream(upstreamProjects: 'kurlytail/user-registration/master,kurlytail/user-authentication/master',
+        	threshold: hudson.model.Result.SUCCESS)
+    }
+    
     stages {
         stage('Prepare env') {
             agent {
@@ -32,13 +38,16 @@ pipeline {
                 sh 'rm -rf *'
      
                 checkout scm
-                withMaven (options: [
-                	dependenciesFingerprintPublisher(disabled: false),
-                	concordionPublisher(disabled: false),
-                	pipelineGraphPublisher(disabled: false, lifecycleThreshold: "install")
-                ]) {
+                withMaven (
+                 	maven: "Maven",
+                 	options: [
+	                	dependenciesFingerprintPublisher(disabled: false),
+	                	concordionPublisher(disabled: false),
+	                	pipelineGraphPublisher(disabled: false, lifecycleThreshold: "install")
+                	]
+                ) {
 		            sh 'mvn --batch-mode -s settings.xml release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion=$MAVEN_VERSION_NUMBER'
-                    sh '/usr/local/bin/mvn -s settings.xml clean deploy --update-snapshots'
+                    sh 'mvn -s settings.xml clean deploy --update-snapshots'
                     sh 'mvn --batch-mode -s settings.xml dockerfile:build'
 		        }
 		        
